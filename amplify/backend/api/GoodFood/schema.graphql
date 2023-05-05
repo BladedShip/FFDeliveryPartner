@@ -1,0 +1,71 @@
+enum ORDERSTATUS {
+  PLACED
+  ACCEPTED
+  REJECTED
+  PREPARING
+  READY_FOR_DELIVERY
+  DELIVERING
+  DELIVERED
+}
+
+type DeliveryPerson @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  fname: String!
+  lname: String
+  sub: String
+  lat: String!
+  long: String!
+  transportation: String
+  Cart: Cart @hasOne
+}
+
+type Order @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  Cart: Cart @hasOne
+  Homemaker: Homemaker @hasOne
+  Customer: Customer @hasOne
+  status: ORDERSTATUS!
+  DeliveryPerson: DeliveryPerson @hasOne
+  dishname: String
+  dishimage: String
+  customername: String
+  deliverystatus: String
+}
+
+type Customer @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  fname: String!
+  lname: String
+  email: String
+  phone: String!
+  lat: String
+  long: String
+  sub: String
+  Cart: Cart @hasOne
+}
+
+type Cart @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  Customer: Customer @belongsTo
+  Dishes: Dish @hasOne
+}
+
+type Dish @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  name: String!
+  price: Float!
+  image: String
+  description: String
+  homemakerID: ID! @index(name: "byHomemaker")
+}
+
+type Homemaker @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  name: String!
+  address: String!
+  lat: Float!
+  long: Float!
+  Dishes: [Dish] @hasMany(indexName: "byHomemaker", fields: ["id"])
+  sub: String
+}
+ 

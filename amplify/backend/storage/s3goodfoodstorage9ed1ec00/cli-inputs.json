@@ -1,0 +1,12 @@
+{
+  "resourceName": "s3goodfoodstorage9ed1ec00",
+  "bucketName": "goodfood-storage-9ed1ec00",
+  "policyUUID": "eb97be15",
+  "storageAccess": "auth",
+  "guestAccess": [],
+  "authAccess": [
+    "CREATE_AND_UPDATE",
+    "READ",
+    "DELETE"
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "staging": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-goodfood-staging-43408-authRole",
+      "UnauthRoleArn": "arn:aws:iam::777226985999:role/amplify-goodfood-staging-43408-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::777226985999:role/amplify-goodfood-staging-43408-authRole",
+      "Region": "ap-south-1",
+      "DeploymentBucketName": "amplify-goodfood-staging-43408-deployment",
+      "UnauthRoleName": "amplify-goodfood-staging-43408-unauthRole",
+      "StackName": "amplify-goodfood-staging-43408",
+      "StackId": "arn:aws:cloudformation:ap-south-1:777226985999:stack/amplify-goodfood-staging-43408/258edab0-b26a-11ed-b7c2-068a777efea6",
+      "AmplifyAppId": "d3vuintkab9lsu"
+    },
+    "categories": {
+      "auth": {
+        "GoodFood": {}
+      },
+      "storage": {
+        "s3goodfoodstorage9ed1ec00": {}
+      }
+    }
+  }
+}

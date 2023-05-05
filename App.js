@@ -1,20 +1,34 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { NavigationContainer } from "@react-navigation/native";
+import { StatusBar } from "expo-status-bar";
+import { GestureHandlerRootView } from "react-native-gesture-handler";
+import { Amplify } from "aws-amplify";
+import { withAuthenticator } from "aws-amplify-react-native";
 
-export default function App() {
+import awsconfig from "./src/aws-exports";
+import AuthProvider from "./src/contexts/AuthContext";
+import Navigation from "./src/navigation";
+import OrderProvider from "./src/contexts/OrderContext";
+
+Amplify.configure({
+  ...awsconfig,
+  Analytics: {
+    disabled: true,
+  },
+});
+
+function App() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
+    <NavigationContainer>
+      <GestureHandlerRootView style={{ flex: 1 }}>
+        <AuthProvider>
+          <OrderProvider>
+            <Navigation />
+          </OrderProvider>
+        </AuthProvider>
+      </GestureHandlerRootView>
       <StatusBar style="auto" />
-    </View>
+    </NavigationContainer>
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+export default withAuthenticator(App);
